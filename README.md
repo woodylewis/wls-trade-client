@@ -1,4 +1,4 @@
-#wls-api-client
+#wls-trade-client
 
 Basic CRUD operations from AngularJS client to Node-Express-MongoDB server
 
