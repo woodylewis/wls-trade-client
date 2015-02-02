@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "AngularJS demo trade client ",
-  "repository": "https://github.com/woodylewis/wls-api-client",
+  "repository": "https://github.com/woodylewis/wls-trade-client",
   "license": "MIT",
   "devDependencies": {
     "karma": "~0.10",
