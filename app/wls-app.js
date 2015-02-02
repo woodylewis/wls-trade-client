@@ -20,17 +20,8 @@ angular.module('wlsApp', [
 			}
 		})
 }])
-.factory('mySocket', function (socketFactory) {
-	var myIoSocket = io.connect('http://dev1:3500');
-
-	var mySocket = socketFactory({
-		ioSocket: myIoSocket
-	});
-
-	return mySocket;
-})
-.controller('MainCtrl', ['$scope', '$state', 'tradeService', 'mySocket',
-			function($scope, $state, tradeService, mySocket) {
+.controller('MainCtrl', ['$scope', '$state', 'tradeService', 'socketService',
+			function($scope, $state, tradeService, socketService) {
 	$scope.name = "Stock";
-	mySocket.emit('chat message', $scope.name);
+	socketService.emit('chat message', $scope.name);
 }]); 
