@@ -1,6 +1,5 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
 angular.module('wlsApp', [
 	'btford.socket-io',
 	'services',
@@ -32,6 +31,6 @@ angular.module('wlsApp', [
 })
 .controller('MainCtrl', ['$scope', '$state', 'tradeService', 'mySocket',
 			function($scope, $state, tradeService, mySocket) {
-	//$scope.name = "Stock";
-	mySocket.emit('chat message', 'TEST');
+	$scope.name = "Stock";
+	mySocket.emit('chat message', $scope.name);
 }]); 
