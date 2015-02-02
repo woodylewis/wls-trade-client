@@ -14,6 +14,7 @@ bower install socket.io-client
 ```
 bower install angular-socket-io
 ```
+```
 npm install
 ```
 ```
