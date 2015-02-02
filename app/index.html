@@ -66,8 +66,17 @@
                   <p>
           </div>
       </div>
-      
-      <div data-ng-controller="MainCtrl">
+    <div class="wls-copy">
+        This app creates a controller.
+        <p><br>
+        <a href="https://github.com/woodylewis/wls-trade-client" target="_blank">GitHub Repo</a>
+    </div>
+    <div id="wls-button-panel">
+    <a ui-sref="index"><button type="button" class="btn btn-primary">main</button></a>
+    <a ui-sref="display"><button type="button" class="btn btn-primary">send</button></a>
+    </div>
+
+    <div data-ng-controller="MainCtrl">
         <div ui-view="state"></div>    
       </div> 
     </div><!-- container -->

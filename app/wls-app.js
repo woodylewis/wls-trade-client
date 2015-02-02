@@ -19,9 +19,20 @@ angular.module('wlsApp', [
 				"state" : { templateUrl: "partials/main_state.html",}
 			}
 		})
+		.state('display', {
+			url: "/display",
+			views: {
+				"state" : { templateUrl: "partials/display.html",}
+			}
+		})
 }])
 .controller('MainCtrl', ['$scope', '$state', 'tradeService', 'socketService',
 			function($scope, $state, tradeService, socketService) {
-	$scope.name = "Stock";
-	socketService.emit('chat message', $scope.name);
+	console.log('Init MainCtrl');
+	$scope.message = "client_outbound";
+
+	socketService.emit('client_request', $scope.message);
+	socketService.on('client_request', function (msg){
+		$scope.display = msg;
+	});
 }]); 
