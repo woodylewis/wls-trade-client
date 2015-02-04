@@ -19,20 +19,17 @@ angular.module('wlsApp', [
 				"state" : { templateUrl: "partials/main_state.html",}
 			}
 		})
-		.state('display', {
-			url: "/display",
-			views: {
-				"state" : { templateUrl: "partials/display.html",}
-			}
-		})
 }])
-.controller('MainCtrl', ['$scope', '$state', 'tradeService', 'socketService',
-			function($scope, $state, tradeService, socketService) {
-	console.log('Init MainCtrl');
-	$scope.message = "client_outbound";
+.controller('MainCtrl', ['$scope', '$state', 'socketService',
+			function($scope, $state, socketService) {
+	$scope.messages = [];
 
-	socketService.emit('client_request', $scope.message);
+	//socketService.emit('client_request', $scope.message);
 	socketService.on('client_request', function (msg){
-		$scope.display = msg;
+		$scope.messages.push(msg);
+		
+		if($scope.messages.length == 5) {
+			$scope.messages = [];
+		}
 	});
 }]); 

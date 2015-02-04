@@ -1,1 +1,5 @@
-{{message}}
+<div id="wls-display">
+	<div ng-repeat="message in messages track by $index">
+		<span ng-bind="message"></span>
+	</div>	
+</div>
