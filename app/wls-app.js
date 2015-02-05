@@ -13,23 +13,34 @@ angular.module('wlsApp', [
 	.otherwise('/index');
 
 	$stateProvider
-		.state('index', {
+		.state('/index', {
 			url: "/index",
 			views: {
 				"state" : { templateUrl: "partials/main_state.html",}
 			}
 		})
+		.state('console', {
+			url: "/console",
+			views: {
+				"state" : { templateUrl: "partials/display.html",}
+			}
+		})
 }])
-.controller('MainCtrl', ['$scope', '$state', 'socketService',
-			function($scope, $state, socketService) {
-	$scope.messages = [];
+.controller('consoleCtrl', ['$scope', 'socketService',
+			function($scope, socketService) {
 
-	//socketService.emit('client_request', $scope.message);
-	socketService.on('client_request', function (msg){
-		$scope.messages.push(msg);
-		
-		if($scope.messages.length == 5) {
-			$scope.messages = [];
-		}
-	});
-}]); 
+	//$scope.getCashPosition = function() {
+		socketService.on('client_request', function (msg){
+			$scope.cash = msg;
+		});
+	//}
+}])
+.directive('wlsTradeconsole', function() {
+	return {
+		restrict: 'E',
+		scope: {
+			cash:'=',
+		},
+		templateUrl: 'templates/wls-tradeconsole.html',
+	}
+}); 
