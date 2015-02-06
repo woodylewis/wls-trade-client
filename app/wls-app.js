@@ -29,18 +29,21 @@ angular.module('wlsApp', [
 .controller('consoleCtrl', ['$scope', 'socketService',
 			function($scope, socketService) {
 
-	//$scope.getCashPosition = function() {
-		socketService.on('client_request', function (msg){
+	$scope.getCash = function(amount) {
+		socketService.emit('get_cash', amount);
+		socketService.on('get_cash', function (msg){
 			$scope.cash = msg;
 		});
-	//}
+	}
+	$scope.getCash(2000000);
 }])
 .directive('wlsTradeconsole', function() {
 	return {
-		restrict: 'E',
+		restrict: 'EA',
 		scope: {
 			cash:'=',
+			getCash:'&'
 		},
-		templateUrl: 'templates/wls-tradeconsole.html',
+		template:'<p><br>&nbsp;&nbsp;CASH: ' + '{{cash}}'
 	}
 }); 
