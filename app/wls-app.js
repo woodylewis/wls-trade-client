@@ -16,13 +16,14 @@ angular.module('wlsApp', [
 		.state('/index', {
 			url: "/index",
 			views: {
-				"state" : { templateUrl: "partials/main_state.html",}
+				"state" : { templateUrl: "partials/main_state.html"}
 			}
 		})
 		.state('console', {
 			url: "/console",
 			views: {
-				"state" : { templateUrl: "partials/display.html",}
+				"state" : { templateUrl: "partials/wls-tradeconsole.html"},
+							controller: 'consoleCtrl'
 			}
 		})
 }])
@@ -39,11 +40,8 @@ angular.module('wlsApp', [
 }])
 .directive('wlsTradeconsole', function() {
 	return {
-		restrict: 'EA',
-		scope: {
-			cash:'=',
-			getCash:'&'
-		},
-		template:'<p><br>&nbsp;&nbsp;CASH: ' + '{{cash}}'
+		restrict: 'E',
+		scope: false,
+		template: 'CASH: ' + '{{cash}}'
 	}
 }); 

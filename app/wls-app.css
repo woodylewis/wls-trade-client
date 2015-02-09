@@ -38,3 +38,8 @@ body {
     width:40em; 
     overflow: auto;  
 }
+
+.console {
+    margin-top:10em;
+    border:1px solid gray;
+}
