@@ -66,13 +66,21 @@
                   <p>
           </div>
       </div>
-    <div class="wls-copy">
-        This app creates a controller.
-        <p><br>
-        <a href="https://github.com/woodylewis/wls-trade-client" target="_blank">GitHub Repo</a>
-    </div>
-    <p>
-        <div ui-view="state"></div>    
+      <div class="row">
+          <div class="wls-copy">
+              This app creates a controller.
+              <p><br>
+              <a href="https://github.com/woodylewis/wls-trade-client" target="_blank">GitHub Repo</a>
+          </div>
+      </div>
+      <div class="row">
+        <!-- MAIN CONTROLLER -->
+        <div ng-controller='consoleCtrl'>
+          <div id="wls-console" ng-cloak>
+            <wls-tradeconsole></wls-tradeconsole>
+          </div>
+        </div>
+      </div>
     </div><!-- container -->
 
 

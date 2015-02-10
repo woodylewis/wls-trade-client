@@ -1,6 +1,4 @@
-/* app css stylesheet */
-
-.nav, #wls-display, a { cursor: pointer; }
+.nav, .buy, a { cursor: pointer; }
 
 body {
     text-align: center;
@@ -28,18 +26,15 @@ body {
     padding:1em;
 }
 
-#wls-display {
+#wls-console {
     position: relative;
     margin:0 auto;
     text-align: left;
-    border:1px solid gray;
+    border-left:1px solid gray;
+    border-right:1px solid gray;
+    border-bottom:1px solid gray;
     padding:1em;
     height:30em;
     width:40em; 
     overflow: auto;  
-}
-
-.console {
-    margin-top:10em;
-    border:1px solid gray;
 }
