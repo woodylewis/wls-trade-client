@@ -75,9 +75,16 @@
       </div>
       <div class="row">
         <!-- MAIN CONTROLLER -->
-        <div ng-controller='consoleCtrl'>
-          <div id="wls-console" ng-cloak>
-            <wls-tradeconsole></wls-tradeconsole>
+        <div data-ng-cloak ng-controller='consoleCtrl'>
+          <div id="wls-console">
+            <div ng-bind="cashPosition">{{cashPosition}}</div>
+              <div ng-bind="stock1">{{stock1}}</div>
+              <div ng-bind="stock2">{{stock2}}</div>
+              <div ng-bind="stock3">{{stock3}}</div>
+              <div class="buy" data-ng-click="init()">init</div>
+              <div class="buy" data-ng-click="buy('1')">stock1</div>
+              <div class="buy" data-ng-click="buy('2')">stock2</div>
+              <div class="buy" data-ng-click="buy('3')">stock3</div>
           </div>
         </div>
       </div>

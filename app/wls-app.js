@@ -8,54 +8,50 @@ angular.module('wlsApp', [
 ])
 .controller('consoleCtrl', ['$scope', 'socketService',
 			function($scope, socketService) {
+
+	$scope.cashPosition = 0;
 	$scope.stock1 = 0;
 	$scope.stock2 = 0;
 	$scope.stock3 = 0;
+	$scope.tranche = 100000;
 
-	$scope.initPosition = function() {
+	$scope.init = function() {
+		socketService.emit('init', 'init');
 		socketService.on('init', function (msg) {
-			$scope.cash = msg;
-			console.log('msg', msg);
+			$scope.cashPosition = msg;
+			console.log('init', msg);
 		});
 	}
 
-	$scope.buy1 = function() {
-		socketService.emit('buy', 'stock1');
-		socketService.on('buy1', function (msg){
-			$scope.stock1 = msg;
-			$scope.cash -= $scope.stock1; 
+	$scope.cash = function() {
+		socketService.on('cash', function (msg) {
+			$scope.cashPosition = msg;
+			console.log('cash', msg);
 		});
 	}
 
-	$scope.buy2 = function() {
-		socketService.emit('buy', 'stock2');
-		socketService.on('buy2', function (msg){
-			$scope.stock2 = msg;
-			$scope.cash -= $scope.stock2; 
-		});
+	$scope.buy = function(stock) {
+		if($scope.cashPosition > 0) {
+			switch (stock) {
+				case '1' :
+					socketService.emit('buy', 'stock1');
+					$scope.stock1 += $scope.tranche;
+				break;
+				case '2' :
+					socketService.emit('buy', 'stock2');
+					$scope.stock2 += $scope.tranche;
+				break;
+				case '3' :
+					socketService.emit('buy', 'stock3');
+					$scope.stock3 += $scope.tranche;
+				break;
+			}
+			$scope.cash();
+		}
+		else if($scope.cashPosition <= 0){
+			alert('Out of cash');
+		}
 	}
 
-	$scope.buy3 = function() {
-		socketService.emit('buy', 'stock3');
-		socketService.on('buy3', function (msg){
-			$scope.stock3 = msg;
-			$scope.cash -= $scope.stock3; 
-		});
-	}
-
-	$scope.getCash = function(amount) {
-		socketService.emit('get_portfolio', amount);
-		socketService.on('portfolio', function (msg){
-			$scope.cash = msg;
-		});
-	}
-
-	$scope.initPosition();
-}])
-.directive('wlsTradeconsole', function() {
-	return {
-		restrict: 'E',
-		scope: false,
-		templateUrl: "templates/wls-tradeconsole.html"
-	}
-}); 
+	$scope.cash();
+}]);
