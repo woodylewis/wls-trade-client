@@ -1,4 +1,4 @@
-.nav, .buy, a { cursor: pointer; }
+.nav, .buy, .sell, a { cursor: pointer; }
 
 body {
     text-align: center;

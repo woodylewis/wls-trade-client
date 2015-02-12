@@ -104,7 +104,6 @@ angular.module('wlsApp', [
 	$scope.cash = function() {
 		socketService.on('cash', function (msg) {
 			$scope.cashPosition = msg;
-			//console.log('cash', msg);
 		});
 	}
 
@@ -131,4 +130,38 @@ angular.module('wlsApp', [
 		}
 		$state.go('chart');
 	}
+
+	$scope.sell = function(stock) {
+			switch (stock) {
+				case '1' :
+					if($scope.stock1 > 0){
+						socketService.emit('sell', 'stock1');
+						$scope.stock1 -= $scope.tranche;
+					}
+					else {
+						alert('No stock1 position');
+					}
+				break;
+				case '2' :
+					if($scope.stock2 > 0){
+						socketService.emit('sell', 'stock2');
+						$scope.stock2 -= $scope.tranche;
+					}
+					else {
+						alert('No stock2 position');
+					}
+				break;
+				case '3' :
+					if($scope.stock3 > 0){
+						socketService.emit('sell', 'stock3');
+						$scope.stock3 -= $scope.tranche;
+					}
+					else {
+						alert('No stock3 position');
+					}
+				break;
+			}
+			$state.go('chart');
+	}
+
 }]);
