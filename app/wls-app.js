@@ -35,48 +35,51 @@ angular.module('wlsApp', [
    link: function($scope) {
 
 		d3Service.d3().then(function(d3) {
-			//var dataset = [5, 10, 20, 45];
-/*
-console.log('stock1 ', $scope.$parent.stock1);
-console.log('stock2 ', $scope.$parent.stock2); 
-console.log('stock3 ', $scope.$parent.stock3);	
-*/		   
-$scope.$watch('cashPosition', function(newValue, oldValue) {
-	if(newValue !== oldValue) {
-		console.log('cashPosition ', $scope.$parent.cashPosition); 
-		
-		    var dataset = [
+			function pieChart(data, svgRegion, width, height) {		    
+				//-- REMOVE ANY PREVIOUS SVG ELEMENT ---
+				//-- PRESERVE ORIGINAL COORDINATES -----
+				d3.select(svgRegion).select('svg').remove();
+			    var color = d3.scale.category10();
+			    var data = data;
+			    var min = Math.min(width, height);
+			    var svg = d3.select(svgRegion).append('svg');
+			    var pie = d3.layout.pie().sort(null);
+			    var arc = d3.svg.arc()
+			      .outerRadius(min / 2 * 0.9);
+
+			    svg.attr({width: width, height: height});
+			    var g = svg.append('g')
+			      // center the chart
+			      .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+			    // add the <path>s for each arc slice
+			    g.selectAll('path').data(pie(data))
+			      .enter().append('path')
+			        .style('stroke', 'white')
+			        .attr('d', arc)
+			        .attr('fill', function(d, i){ return color(i) });
+			}//--- pieChart ----
+				//--- THIS COPY USED ONCE ---
+				var original = [
 		    		$scope.$parent.cashPosition, 
 		    		$scope.$parent.stock1, 
 		    		$scope.$parent.stock2, 
 		    		$scope.$parent.stock3];
-		    
-		    var color = d3.scale.category10();
-		    var data = dataset;
-		    var width = 100;
-		    var height = 100;
-		    var min = Math.min(width, height);
-		    var svg = d3.select('#chart').append('svg');
-		    //var svg = d3.select(el[0]).append('svg');
-		    var pie = d3.layout.pie().sort(null);
-		    var arc = d3.svg.arc()
-		      .outerRadius(min / 2 * 0.9);
 
-		    svg.attr({width: width, height: height});
-		    var g = svg.append('g')
-		      // center the donut chart
-		      .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-		    
-		    // add the <path>s for each arc slice
-		    g.selectAll('path').data(pie(data))
-		      .enter().append('path')
-		        .style('stroke', 'white')
-		        .attr('d', arc)
-		        .attr('fill', function(d, i){ return color(i) });
-	}//-- if(newValue !== oldValue) --
-});//-- $scope.$watch ---
+			pieChart(original, "#chart", 100, 100);
+
+			$scope.$watch('cashPosition', function(newValue, oldValue) {
+				if(newValue !== oldValue) {
+					//--- THIS COPY CHANGES ---
+					var dataset = [
+			    		$scope.$parent.cashPosition, 
+			    		$scope.$parent.stock1, 
+			    		$scope.$parent.stock2, 
+			    		$scope.$parent.stock3];
+
+					pieChart(dataset, "#chart", 100, 100);
+				}//-- if(newValue !== oldValue) --
+			});//-- $scope.$watch ---
 		});//-- d3Service ---
- 	
 	}//-- link ---
   };
 }])
