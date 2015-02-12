@@ -3,35 +3,61 @@
 angular.module('wlsApp', [
 	'btford.socket-io',
 	'services',
+	'ui.router',
 	'ui.bootstrap',
 	'ui.bootstrap.tpls'
 ])
-.directive('wlsPiechart', [ 'd3Service', function(d3Service){
+.config(['$stateProvider', '$urlRouterProvider', 
+		  	function($stateProvider, $urlRouterProvider) {
+	$urlRouterProvider
+	.otherwise('/index');
+
+	$stateProvider
+		.state('index', {
+			url: "/index",
+			views: {
+				"state" : { templateUrl: "partials/main_state.html" }
+			}
+		})
+		.state('chart', {
+			url: "/chart",
+			views: {
+				"state" : { templateUrl: "partials/wls-tradeconsole.html" }
+			}
+		})
+}])
+.directive('wlsPiechart', ['d3Service', function(d3Service){
   return {
     restrict: 'E',
-    transclude: true,
+    scope: false,
+	templateUrl: 'templates/piechart.html',
 
-   link: function(scope, el, attr) {
-//console.log('scope', scope.$parent.$$childHead);
-console.log('cashPosition ', scope.$parent.$$childHead.cashPosition); 
-console.log('stock1 ',scope.$parent.$$childHead.stock1);
-console.log('stock2 ',scope.$parent.$$childHead.stock2); 
-console.log('stock3 ',scope.$parent.$$childHead.stock3);	
+   link: function($scope) {
+
 		d3Service.d3().then(function(d3) {
-			var dataset = [5, 10, 20, 45];
-		   /*
+			//var dataset = [5, 10, 20, 45];
+/*
+console.log('stock1 ', $scope.$parent.stock1);
+console.log('stock2 ', $scope.$parent.stock2); 
+console.log('stock3 ', $scope.$parent.stock3);	
+*/		   
+$scope.$watch('cashPosition', function(newValue, oldValue) {
+	if(newValue !== oldValue) {
+		console.log('cashPosition ', $scope.$parent.cashPosition); 
+		
 		    var dataset = [
-		    		scope.$parent.$$childHead.cashPosition, 
-		    		scope.$parent.$$childHead.stock1, 
-		    		scope.$parent.$$childHead.stock2, 
-		    		scope.$parent.$$childHead.stock3];
-		    */
+		    		$scope.$parent.cashPosition, 
+		    		$scope.$parent.stock1, 
+		    		$scope.$parent.stock2, 
+		    		$scope.$parent.stock3];
+		    
 		    var color = d3.scale.category10();
 		    var data = dataset;
 		    var width = 100;
 		    var height = 100;
 		    var min = Math.min(width, height);
-		    var svg = d3.select(el[0]).append('svg');
+		    var svg = d3.select('#chart').append('svg');
+		    //var svg = d3.select(el[0]).append('svg');
 		    var pie = d3.layout.pie().sort(null);
 		    var arc = d3.svg.arc()
 		      .outerRadius(min / 2 * 0.9);
@@ -47,12 +73,15 @@ console.log('stock3 ',scope.$parent.$$childHead.stock3);
 		        .style('stroke', 'white')
 		        .attr('d', arc)
 		        .attr('fill', function(d, i){ return color(i) });
-		});
-	}
+	}//-- if(newValue !== oldValue) --
+});//-- $scope.$watch ---
+		});//-- d3Service ---
+ 	
+	}//-- link ---
   };
 }])
-.controller('consoleCtrl', ['$scope', 'socketService',
-			function($scope, socketService) {
+.controller('consoleCtrl', ['$scope', '$state', 'socketService',
+			function($scope, $state, socketService) {
 
 	$scope.cashPosition = 0;
 	$scope.stock1 = 0;
@@ -71,7 +100,7 @@ console.log('stock3 ',scope.$parent.$$childHead.stock3);
 	$scope.cash = function() {
 		socketService.on('cash', function (msg) {
 			$scope.cashPosition = msg;
-			console.log('cash', msg);
+			//console.log('cash', msg);
 		});
 	}
 
@@ -96,5 +125,6 @@ console.log('stock3 ',scope.$parent.$$childHead.stock3);
 		else if($scope.cashPosition <= 0){
 			alert('Out of cash');
 		}
+		$state.go('chart');
 	}
 }]);
