@@ -37,3 +37,27 @@ body {
     height:30em;
     width:40em;
 }
+
+#cash {
+    background-color:#2ca02c;
+}
+
+#stock1 {
+    background-color:#1f77b4;
+}
+
+#stock2 {
+    background-color:#ff7f0e;
+}
+
+#stock3 {
+    background-color:#d62728;
+}
+
+#cash,
+#stock1,
+#stock2,
+#stock3 {
+    width:5em;
+    text-align: center;
+}

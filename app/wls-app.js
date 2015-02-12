@@ -39,7 +39,8 @@ angular.module('wlsApp', [
 				//-- REMOVE ANY PREVIOUS SVG ELEMENT ---
 				//-- PRESERVE ORIGINAL COORDINATES -----
 				d3.select(svgRegion).select('svg').remove();
-			    var color = d3.scale.category10();
+				//--- START WITH GREEN FOR CASH -----
+				var color = ['#2ca02c', '#1f77b4','#ff7f0e','#d62728'];
 			    var data = data;
 			    var min = Math.min(width, height);
 			    var svg = d3.select(svgRegion).append('svg');
@@ -54,9 +55,8 @@ angular.module('wlsApp', [
 			    // add the <path>s for each arc slice
 			    g.selectAll('path').data(pie(data))
 			      .enter().append('path')
-			        //.style('stroke', 'white')
 			        .attr('d', arc)
-			        .attr('fill', function(d, i){ return color(i) });
+			        .attr('fill', function(d, i){ return color[i] });
 			}//--- pieChart ----
 				//--- THIS COPY USED ONCE ---
 				var original = [
