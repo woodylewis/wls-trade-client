@@ -54,7 +54,7 @@ angular.module('wlsApp', [
 			    // add the <path>s for each arc slice
 			    g.selectAll('path').data(pie(data))
 			      .enter().append('path')
-			        .style('stroke', 'white')
+			        //.style('stroke', 'white')
 			        .attr('d', arc)
 			        .attr('fill', function(d, i){ return color(i) });
 			}//--- pieChart ----
@@ -86,7 +86,7 @@ angular.module('wlsApp', [
 .controller('consoleCtrl', ['$scope', '$state', 'socketService',
 			function($scope, $state, socketService) {
 
-	$scope.cashPosition = 0;
+	$scope.cashPosition = '';
 	$scope.stock1 = 0;
 	$scope.stock2 = 0;
 	$scope.stock3 = 0;
@@ -98,6 +98,7 @@ angular.module('wlsApp', [
 			$scope.cashPosition = msg;
 			console.log('init', msg);
 		});
+		$state.go('chart');
 	}
 
 	$scope.cash = function() {
