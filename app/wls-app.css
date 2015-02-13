@@ -62,10 +62,12 @@ body {
 #stock1,
 #stock2,
 #stock3 {
+    position: relative;
     width:2em;
-    height:1.5em;
-    display: inline-block;
+    height:1em;
     float: left;
+    margin:.1em;
+    display: inline;
 }
 
 .cell, 
@@ -77,23 +79,29 @@ body {
     position: relative;
     float: left;
     display: inline;
-    margin-right:1em;
 }
 
 .label_cell {
     width: 4em;
 }
 
+.color_cell {
+    width:6em;
+}
 .amount_cell {
     width: 6em;
 }
 
 #color_bars {
+    border:1px solid gray;
 }
 
 .color_bar {
+    /*
     width:6em;
     height:1.5em;
+    */
+    text-align: left;
 }
 
 #cashPos,
