@@ -1,3 +1,8 @@
+<div id="wls-center-button-panel">
+<a ui-sref="index"><button type="button" class="btn btn-primary">Main</button></a>
+<button type="button" class="btn btn-primary" data-ng-click="reset()">Reset</button>
+</div>
+
 <div id="cashPos">
 	<div class="label_cell"><b>cash</b></div>
 	<div class="amount_cell" ng-bind="cashPosition">{{cashPosition}}</div>
@@ -5,22 +10,22 @@
 <div id="stock1Pos">
 	<div class="label_cell"><b>stock 1</b></div>
 	<div class="amount_cell" ng-bind="stock1">{{stock1}}</div>
-	<div class="buy" data-ng-click="buy('1')"><i class="fa fa-plus-square"></i> &nbsp;BUY</div>
- 	<div class="sell" data-ng-click="sell('1')"><i class="fa fa-minus-square"></i> &nbsp;
+	<div class="buy" data-ng-click="buy('1')"><i class="fa fa-plus-square"></i>&nbsp;BUY&nbsp;&nbsp;</div>
+ 	<div class="sell" data-ng-click="sell('1')"><i class="fa fa-minus-square"></i>
  	SELL</div>
 </div>
 <div id="stock2Pos">
 	<div class="label_cell"><b>stock 2</b></div>
 	<div class="amount_cell" ng-bind="stock2">{{stock2}}</div>
-	<div class="buy" data-ng-click="buy('2')"><i class="fa fa-plus-square"></i> &nbsp;BUY</div>
- 	<div class="sell" data-ng-click="sell('2')"><i class="fa fa-minus-square"></i> &nbsp;
+	<div class="buy" data-ng-click="buy('2')"><i class="fa fa-plus-square"></i>&nbsp;BUY&nbsp;&nbsp;</div>
+ 	<div class="sell" data-ng-click="sell('2')"><i class="fa fa-minus-square"></i>
  	SELL</div>
 </div>
 <div id="stock3Pos">
 	<div class="label_cell"><b>stock 3</b></div>
 	<div class="amount_cell" ng-bind="stock3">{{stock3}}</div>
-	<div class="buy" data-ng-click="buy('3')"><i class="fa fa-plus-square"></i> &nbsp;BUY</div>
- 	<div class="sell" data-ng-click="sell('3')"><i class="fa fa-minus-square"></i> &nbsp;
+	<div class="buy" data-ng-click="buy('3')"><i class="fa fa-plus-square"></i>&nbsp;BUY&nbsp;&nbsp;</div>
+ 	<div class="sell" data-ng-click="sell('3')"><i class="fa fa-minus-square"></i>
  	SELL</div>
 </div>
 <p>

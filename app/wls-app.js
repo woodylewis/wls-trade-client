@@ -101,6 +101,21 @@ angular.module('wlsApp', [
 		$state.go('chart');
 	}
 
+	$scope.reset = function() {
+		if($scope.cashPosition == 1000000) {
+			alert('Already at starting cash position');
+		}
+		$scope.stock1 = 0;
+		$scope.stock2 = 0;
+		$scope.stock3 = 0;
+		socketService.emit('reset', 'reset');
+		socketService.on('reset', function (msg) {
+			$scope.cashPosition = msg;
+			console.log('reset', msg);
+		});
+		$state.go('chart');
+	}
+
 	$scope.cash = function() {
 		socketService.on('cash', function (msg) {
 			$scope.cashPosition = msg;
