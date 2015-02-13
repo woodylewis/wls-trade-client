@@ -1,4 +1,4 @@
-.nav, .buy, .sell, a { cursor: pointer; }
+.nav, .buy, .sell, .reset a { cursor: pointer; }
 
 body {
     text-align: center;
@@ -38,6 +38,10 @@ body {
     width:40em;
 }
 
+#chart {
+    text-align: center;
+}
+
 #cash {
     background-color:#2ca02c;
 }
@@ -58,6 +62,46 @@ body {
 #stock1,
 #stock2,
 #stock3 {
-    width:5em;
-    text-align: center;
+    width:2em;
+    height:1.5em;
+    display: inline-block;
+    float: left;
+}
+
+.cell, 
+.label_cell, 
+.amount_cell,
+.buy, 
+.sell,
+.reset  {
+    position: relative;
+    float: left;
+    display: inline;
+    margin-right:1em;
+}
+
+.label_cell {
+    width: 4em;
+}
+
+.amount_cell {
+    width: 6em;
+}
+
+#color_bars {
+}
+
+.color_bar {
+    width:6em;
+    height:1.5em;
+}
+
+#cashPos,
+#stock1Pos, 
+#stock2Pos,
+#stock3Pos {
+    position: relative;
+    width:30em;
+    height:1.5em;
+    margin-bottom:.5em;
 }

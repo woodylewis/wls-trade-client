@@ -17,7 +17,7 @@ angular.module('wlsApp', [
 			url: "/index",
 			views: {
 				"state" : { templateUrl: "partials/main_state.html" }
-			}
+ 			}
 		})
 		.state('chart', {
 			url: "/chart",
@@ -29,7 +29,7 @@ angular.module('wlsApp', [
 .directive('wlsPiechart', ['d3Service', function(d3Service){
   return {
     restrict: 'E',
-    scope: false,
+    transclude: true,
 	templateUrl: 'templates/piechart.html',
 
    link: function($scope) {
@@ -65,7 +65,7 @@ angular.module('wlsApp', [
 		    		$scope.$parent.stock2, 
 		    		$scope.$parent.stock3];
 
-			pieChart(original, "#chart", 100, 100);
+			pieChart(original, "#chart", 120, 120);
 
 			$scope.$watch('cashPosition', function(newValue, oldValue) {
 				if(newValue !== oldValue) {
@@ -76,7 +76,7 @@ angular.module('wlsApp', [
 			    		$scope.$parent.stock2, 
 			    		$scope.$parent.stock3];
 
-					pieChart(dataset, "#chart", 100, 100);
+					pieChart(dataset, "#chart", 120, 120);
 				}//-- if(newValue !== oldValue) --
 			});//-- $scope.$watch ---
 		});//-- d3Service ---
@@ -163,5 +163,5 @@ angular.module('wlsApp', [
 			}
 			$state.go('chart');
 	}
-
+	
 }]);

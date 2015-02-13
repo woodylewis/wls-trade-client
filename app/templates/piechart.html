@@ -1,15 +1,42 @@
-<div id="cash">cash</div>
-<div ng-bind="cashPosition">{{cashPosition}}</div>
-<div id="stock1">stock 1</div>
-<div ng-bind="stock1">{{stock1}}</div>
-<div id="stock2">stock 2</div>
-<div ng-bind="stock2">{{stock2}}</div>
-<div id="stock3">stock 3</div>
-<div ng-bind="stock3">{{stock3}}</div>
- <div class="buy" data-ng-click="buy('1')">buy stock 1</div>
-<div class="buy" data-ng-click="buy('2')">buy stock 2</div>
-<div class="buy" data-ng-click="buy('3')">buy stock 3</div>
- <div class="buy" data-ng-click="sell('1')">sell stock 1</div>
- <div class="buy" data-ng-click="sell('2')">sell stock 2</div>
- <div class="buy" data-ng-click="sell('3')">sell stock 3</div>
+<div id="cashPos">
+	<div class="label_cell"><b>cash</b></div>
+	<div class="amount_cell" ng-bind="cashPosition">{{cashPosition}}</div>
+</div>
+<div id="stock1Pos">
+	<div class="label_cell"><b>stock 1</b></div>
+	<div class="amount_cell" ng-bind="stock1">{{stock1}}</div>
+	<div class="buy" data-ng-click="buy('1')"><i class="fa fa-plus-square"></i> &nbsp;BUY</div>
+ 	<div class="sell" data-ng-click="sell('1')"><i class="fa fa-minus-square"></i> &nbsp;
+ 	SELL</div>
+</div>
+<div id="stock2Pos">
+	<div class="label_cell"><b>stock 2</b></div>
+	<div class="amount_cell" ng-bind="stock2">{{stock2}}</div>
+	<div class="buy" data-ng-click="buy('2')"><i class="fa fa-plus-square"></i> &nbsp;BUY</div>
+ 	<div class="sell" data-ng-click="sell('2')"><i class="fa fa-minus-square"></i> &nbsp;
+ 	SELL</div>
+</div>
+<div id="stock3Pos">
+	<div class="label_cell"><b>stock 3</b></div>
+	<div class="amount_cell" ng-bind="stock3">{{stock3}}</div>
+	<div class="buy" data-ng-click="buy('3')"><i class="fa fa-plus-square"></i> &nbsp;BUY</div>
+ 	<div class="sell" data-ng-click="sell('3')"><i class="fa fa-minus-square"></i> &nbsp;
+ 	SELL</div>
+</div>
+<br>
+<p><br>
 <div id="chart"></div>
+<br>
+<div id="color_bars">
+	<div class="color_bar">
+		<div id="stock1">&nbsp;</div>&nbsp;<b>stock 1</b>
+	</div>
+	<p>
+	<div class="color_bar">
+		<div id="stock2">&nbsp;</div>&nbsp;<b>stock 2</b>
+	</div>
+	<p>
+	<div class="color_bar">
+		<div id="stock3">&nbsp;</div>&nbsp;<b>stock 3</b>
+	</div>
+</div>
