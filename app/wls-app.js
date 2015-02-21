@@ -5,12 +5,13 @@ angular.module('wlsApp', [
 	'services',
 	'ui.router',
 	'ui.bootstrap',
-	'ui.bootstrap.tpls'
+	'ui.bootstrap.tpls',
+	'd3'
 ])
 .config(['$stateProvider', '$urlRouterProvider', 
 		  	function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider
-	.otherwise('/index');
+	.otherwise('index');
 
 	$stateProvider
 		.state('index', {
