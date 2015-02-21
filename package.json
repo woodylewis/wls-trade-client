@@ -1,6 +1,6 @@
 {
-  "name": "wlsApp",
-  "private": true,
+  "name": "wlsTrade",
+  "private": false,
   "version": "0.0.0",
   "description": "AngularJS demo trade client ",
   "repository": "https://github.com/woodylewis/wls-trade-client",

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wlsApp', [
+angular.module('wlsTrade', [
 	'btford.socket-io',
 	'services',
 	'ui.router',
