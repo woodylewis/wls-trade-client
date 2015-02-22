@@ -17,13 +17,13 @@ angular.module('wlsTrade', [
 		.state('index', {
 			url: "/index",
 			views: {
-				"state" : { templateUrl: "partials/main_state.html" }
+				"state" : { templateUrl: "partials/main_state.html", }
  			}
 		})
 		.state('chart', {
 			url: "/chart",
 			views: {
-				"state" : { templateUrl: "partials/wls-tradeconsole.html" }
+				"state" : { templateUrl: "partials/wls-tradeconsole.html", }
 			}
 		})
 }])
@@ -179,5 +179,4 @@ angular.module('wlsTrade', [
 			}
 			$state.go('chart');
 	}
-	
 }]);
